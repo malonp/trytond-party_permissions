@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<tryton>
+    <data>
+        <!-- Records already in party module
+
+        Create group
+
+        <record model="res.group" id="group_party_admin">
+            <field name="name">Party Administration</field>
+        </record>
+
+        Set tryton admin part of party admin group.
+
+        <record model="res.user-res.group"
+            id="user_admin_group_party_admin">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_party_admin"/>
+        </record>
+
+        -->
+
+        <!-- Set general permissions. -->
+        <record model="ir.model.access" id="access_guess_party">
+            <field name="model" search="[('model', '=', 'party.party')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <!-- Set group's permissions references to tryton admin
+             using group_party_admin id register from party module -->
+        <record model="ir.model.access" id="access_party_admin">
+            <field name="model" search="[('model', '=', 'party.party')]"/>
+            <field name="group" ref="party.group_party_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+    </data>
+</tryton>
